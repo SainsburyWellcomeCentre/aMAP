@@ -1,3 +1,7 @@
+##### IMPORTANT NOTE #####
+this package contains the binaries source of the niftyreg version used in the aMAP publication. It is NOT the official niftyreg repository. Up-to-date versions of niftyreg  can be obtained at https://sourceforge.net/projects/niftyreg/
+
+
 #####################
 # NIFTY_REG PACKAGE #
 #####################
