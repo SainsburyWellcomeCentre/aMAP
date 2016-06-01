@@ -13,6 +13,7 @@
         <file>
             <source>target/${project.artifactId}-${project.version}-jar-with-dependencies.jar</source>
             <outputDirectory>/</outputDirectory>
+            <destName>${project.artifactId}.jar</destName>
         </file>
     </files>
   

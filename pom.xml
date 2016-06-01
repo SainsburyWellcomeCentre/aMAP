@@ -5,7 +5,7 @@
 
 	<groupId>net.swc</groupId>
 	<artifactId>aMAP</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 
   <name>aMAP</name>
   <url>http://maven.apache.org</url>
