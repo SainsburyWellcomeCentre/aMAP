@@ -64,7 +64,7 @@ public abstract class NiftyCommand implements Command {
 		else{
 			throw new Error("System platform not supported. Currently this software will only run on 64 bit Mac and Linux machines");
 		}
-		return Utilities.resourceStringToFile(resourceString).getAbsolutePath();
+		return Utilities.getResource(resourceString).getAbsolutePath();
 	}
 	
 	public final List<String> getCommand(){

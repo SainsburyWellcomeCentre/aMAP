@@ -1,5 +1,7 @@
 package net.swc.aMAP.niftyReg;
 
+import org.testng.annotations.Test;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,6 @@ import net.swc.aMAP.parameters.DoubleParameter;
 import net.swc.aMAP.parameters.FileParameter;
 import net.swc.aMAP.parameters.IntParameter;
 
-import org.testng.annotations.Test;
 
 //import static org.testng.Assert.*;
 
@@ -22,18 +23,8 @@ public class TestCommands {
 	public static final File tmpResOut = new File("src/test/resources/res.nii.gz");
 	public static final File cpp = new File("src/test/resources/cpp.nii");
 	
-	@Test
-	public void testEmptyCommands() {
-		List<NiftyCommand> commands = new ArrayList<NiftyCommand>();
-		commands.add(new RegAladin());
-		commands.add(new RegF3d());
-		commands.add(new RegResample());
-		for (NiftyCommand nc : commands){
-			new CommandRunner(nc, errOut, logOut, new CrashOnException()).run();;
-		}
-	}
-	
-	@Test
+	//currently the the data for this test is too big and the runtime too slow for routine testing/inclusion on github, redo!
+/*	@Test 
 	public void testFullTransform(){
 		
 		NiftyCommand command = new RegAladin(null);
@@ -46,7 +37,7 @@ public class TestCommands {
 		command.setParameter(new DoubleParameter("-be", 0.95));
 		command.setParameter(new FileParameter("-cpp", cpp));
 		new CommandRunner(command, errOut, logOut, new CrashOnException()).run();
-	}
+	}*/
 	
 	public void addAladinF3dParameters(NiftyCommand command){
 		command.setParameter(new FileParameter("-ref", testBrain));

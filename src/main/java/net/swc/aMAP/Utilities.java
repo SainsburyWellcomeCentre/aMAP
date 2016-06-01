@@ -3,6 +3,10 @@ package net.swc.aMAP;
 import java.awt.Component;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.net.URLDecoder;
 import java.util.StringTokenizer;
 
@@ -43,15 +47,34 @@ public class Utilities {
 	 return System.getProperty("os.name").toLowerCase().contains("linux");
 	}
 	
-	public static File resourceStringToFile(String resourceStr){
+	public static File getResource(String resourceStr){
 		File targetFile = null;
-		try {
-			String path = ClassLoader.getSystemClassLoader().getResource(resourceStr).getPath();
-			path = URLDecoder.decode(path, "UTF-8");
-			targetFile = new File(path);
-		} catch (UnsupportedEncodingException e) {
-			throw new Error("Couldn't get base Path!"); //TODO: proper error handling
-		}
+			URL resource = ClassLoader.getSystemClassLoader().getResource(resourceStr);
+			if (resource==null){ // if the class loader can't find the resource, check the filesystem
+				resource = Utilities.class.getResource(Utilities.class.getSimpleName()+".class");
+				targetFile = UrlToFile(resource);
+				targetFile = targetFile.getParentFile(); // now we have the program's parent folder
+				try {
+					targetFile = new File(new URI("file://"+targetFile.getAbsolutePath()+"/"+resourceStr));
+				} catch (URISyntaxException e) {
+					targetFile = null;
+				}
+			} else
+				targetFile = UrlToFile(resource);
 		return targetFile;
+	}
+	
+	public static File UrlToFile(URL url){
+		String urlStr = url.toString();
+		int endPos = urlStr.contains("!/")? urlStr.indexOf("!/") : urlStr.length();
+		urlStr = urlStr.substring(urlStr.indexOf("file:/"), endPos);
+		try {
+			url = new URL(urlStr);
+			return new File(url.toURI());
+		} catch (URISyntaxException e) {
+			throw new Error("Unexpected error during resource decoding! ("+url+")"); //TODO: proper error handling
+		} catch (MalformedURLException e1) {
+			throw new Error("Unexpected error during resource decoding! ("+urlStr+")"); //TODO: proper error handling
+		}
 	}
 }

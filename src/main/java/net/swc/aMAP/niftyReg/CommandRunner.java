@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommandRunner implements Runnable {
@@ -24,7 +25,7 @@ public class CommandRunner implements Runnable {
 
 	public void run(){
 		List<String> commandList = command.getCommand();
-		new File(commandList.get(0)).setExecutable(true);
+		//new File(commandList.get(0)).setExecutable(true);
 		ProcessBuilder pb = new ProcessBuilder(commandList);
 		pb.redirectError(errorOut);
 		pb.redirectOutput(logOut);

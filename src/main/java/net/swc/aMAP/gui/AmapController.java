@@ -2,15 +2,17 @@ package net.swc.aMAP.gui;
 
 import java.io.File;
 
+import javax.swing.JOptionPane;
+
 import net.swc.aMAP.Utilities;
 import net.swc.aMAP.niftyReg.CommandRunner;
 import net.swc.aMAP.niftyReg.ExceptionHandler;
 
 public class AmapController {
 	
-	public static final File defaultAvgFile = Utilities.resourceStringToFile("atlas/Kim_OstenRef_ARA_v2_Average_Brain.nii");
-	public static final File defaultAtlasFile = Utilities.resourceStringToFile("atlas/Kim_ORL_ARA_v2.3_Segmentation_Smoothed.nii");
-	public static final File testBrain = Utilities.resourceStringToFile("testBrain/Test1_Ch02_12.5-Zsmoothed.nii");
+	public static final File defaultAvgFile = Utilities.getResource("atlas/Kim_OstenRef_ARA_v2_Average_Brain.nii");
+	public static final File defaultAtlasFile = Utilities.getResource("atlas/Kim_ORL_ARA_v2.3_Segmentation_Smoothed.nii");
+	public static final File testBrain = Utilities.getResource("testBrain/Test1_Ch02_12.5-Zsmoothed.nii");
 	private final AmapMainFrame amapMainFrame;
 	private Thread currentRunner;
 	
@@ -47,7 +49,7 @@ public class AmapController {
 				synchronized(lock){if (hasCrashed) return;}
 				t = new Thread(new CommandRunner(rc.getf3dCommand(), rc.getErrOut("f3d"), rc.getLogOut("f3d"), this));
 				t.start();
-				mainFrame.setStatus("Step 2/3 : Running free-from registration (reg_f3d)");
+				mainFrame.setStatus("Step 2/3 : Running free-form registration (reg_f3d)");
 				t.join();
 				synchronized(lock){if (hasCrashed) return;}
 				t = new Thread(new CommandRunner(rc.getResampleCommand(), rc.getErrOut("resample"), rc.getLogOut("resample"), this));
@@ -56,6 +58,7 @@ public class AmapController {
 				t.join();
 				synchronized(lock){if (hasCrashed) return;}
 				mainFrame.done();
+				JOptionPane.showMessageDialog(mainFrame, "Segmentation finished!");
 			} catch (InterruptedException e) {
 				if (t!=null)
 					t.interrupt();

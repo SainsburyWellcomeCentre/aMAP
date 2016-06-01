@@ -12,6 +12,8 @@ import net.swc.aMAP.parameters.FileParameter;
 import net.swc.aMAP.parameters.IllegalValueException;
 import net.swc.aMAP.parameters.IntParameter;
 import net.swc.aMAP.parameters.Parameter;
+import net.swc.aMAP.parameters.StringParameter;
+import net.swc.aMAP.parameters.StringUiParameter;
 
 public class AmapRunConfig {
 	private List<? extends Parameter> aladinParameters;
@@ -63,16 +65,19 @@ public class AmapRunConfig {
 		this.f3dParameters = f3dParameters;
 	}
 	
-	public void setCustomAladin(String aladinExec){
-		this.aladinExec = aladinExec;
+	public void setCustomAladin(StringParameter aladinPath) throws IllegalValueException{
+		aladinPath.checkValue();
+		this.aladinExec = aladinPath.getValueString();
 	}
 	
-	public void setCustomF3d(String f3dExec){
-		this.f3dExec = f3dExec;
+	public void setCustomF3d(StringParameter f3dExec) throws IllegalValueException{
+		f3dExec.checkValue();
+		this.f3dExec = f3dExec.getValueString();
 	}
 
-	public void setCustomResample(String resampleExec){
-		this.resampleExec = resampleExec;
+	public void setCustomResample(StringParameter resampleExec) throws IllegalValueException{
+		resampleExec.checkValue();
+		this.resampleExec = resampleExec.getValueString();
 	}
 	
 	public File affineFile(){

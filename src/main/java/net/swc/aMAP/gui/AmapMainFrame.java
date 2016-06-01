@@ -404,9 +404,9 @@ public class AmapMainFrame extends JFrame{
 		runConfig.setAtlas(rdbtnDefaultAtlas.isSelected()?defaultAtlas() : atlasParameter);
 
 		if(!rdbtnDefaultBackend.isSelected()){
-			runConfig.setCustomAladin(aladinPath.getValueString());
-			runConfig.setCustomF3d(f3dPath.getValueString());
-			runConfig.setCustomResample(resamplePath.getValueString());
+			runConfig.setCustomAladin(aladinPath);
+			runConfig.setCustomF3d(f3dPath);
+			runConfig.setCustomResample(resamplePath);
 		}
 
 		runConfig.setAdditionalAladinParameters(aladinParameters);

@@ -19,7 +19,7 @@ import net.swc.aMAP.parameters.Parameter;
 public class HelpProvider {
 	
 	public static final int charsBeforeLineBreak = 60;
-	public static final File helpHeader = Utilities.resourceStringToFile("help/HelpHeader.txt");
+	public static final File helpHeader = Utilities.getResource("help/HelpHeader.txt");
 	private static final HelpProvider uniqueInstance = new HelpProvider();
 	private Map<String, String> tooltips;
 
