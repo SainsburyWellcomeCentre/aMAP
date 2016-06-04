@@ -108,7 +108,7 @@ public class AmapMainFrame extends JFrame{
 	private void initParameters(){
 		aladinParameters = new ArrayList<UiParameter>();
 		aladinParameters.add(new IntUiParameter("-ln", 6, 1, 20));
-		aladinParameters.add(new IntUiParameter("-lp", 4, 1, 20));
+		aladinParameters.add(new IntUiParameter("-lp", 5, 1, 20));
 
 		f3dParameters = new ArrayList<UiParameter>();
 		f3dParameters.add(new IntUiParameter("-ln", 6, 1, 20));
