@@ -14,8 +14,7 @@
 	</properties>
 
 	<build>
-		<defaultGoal>clean package</defaultGoal>
-		<pluginManagement>
+		<defaultGoal>clean install</defaultGoal>
 			<plugins>
 				<plugin>
 					<artifactId>maven-resources-plugin</artifactId>
@@ -95,7 +94,6 @@
 					</executions>
 				</plugin>
 			</plugins>
-		</pluginManagement>
 	</build>
 
 	<dependencies>
